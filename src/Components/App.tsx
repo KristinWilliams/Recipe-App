@@ -1,7 +1,13 @@
 import React from "react";
+import HomeScreen from "./HomeScreen";
+import base from "./base.scss";
 
 const App = () => {
-  return <div>App</div>;
+  return (
+    <div>
+      <HomeScreen />
+    </div>
+  );
 };
 
 export default App;
