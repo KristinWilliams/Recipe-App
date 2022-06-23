@@ -1,0 +1,11 @@
+$darkBlue: #3d348b;
+$beige: #fff1c9;
+$lightOrange: #f18701;
+$darkOrange: #f35b04;
+
+@mixin flexDefault($direction) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: $direction;
+}
