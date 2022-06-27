@@ -1,7 +1,9 @@
-$darkBlue: #3d348b;
+$darkBlue: hsl(246, 46%, 37%);
 $beige: #fff1c9;
 $lightOrange: #f18701;
 $darkOrange: #f35b04;
+$btnShadow: drop-shadow(0.2rem 0.2rem 0.2rem hsla(0, 0%, 0%, 0.5));
+$btnShadowHover: drop-shadow(0.5rem 0.5rem 0.5rem hsla(0, 0%, 0%, 0.4));
 
 @mixin flexDefault($direction) {
   display: flex;

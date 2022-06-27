@@ -49,12 +49,11 @@ body {
       border: none;
       border-radius: 1rem;
       padding: 2rem 3rem;
-      // box-shadow: 0.5rem 0.5rem 0.5rem hsla(0, 0%, 0%, 0.25);
-      filter: drop-shadow(0.2rem 0.2rem 0.2rem hsla(0, 0%, 0%, 0.5));
+      filter: $btnShadow;
 
       &:hover {
         cursor: pointer;
-        filter: drop-shadow(0.5rem 0.5rem 0.5rem hsla(0, 0%, 0%, 0.4));
+        filter: $btnShadowHover;
       }
     }
 

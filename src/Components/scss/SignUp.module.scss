@@ -1,0 +1,90 @@
+@import "./base";
+@import "./variables";
+
+body {
+  background-color: white;
+}
+
+.container {
+  @include flexDefault(column);
+  height: 100vh;
+  max-width: 70%;
+  margin: auto;
+
+  img {
+    display: none;
+  }
+
+  .form-container {
+    display: flex;
+    @include flexDefault(column);
+    width: 100%;
+    p {
+      margin-top: 3rem;
+      color: $lightOrange;
+      align-self: end;
+    }
+
+    h1 {
+      color: $darkBlue;
+      text-transform: uppercase;
+      // font-size: clamp(2.5rem, 2vw, 3rem);
+      font-size: 2.5rem;
+    }
+
+    form {
+      @include flexDefault(column);
+      margin-top: 4rem;
+
+      input {
+        border: 1px solid $lightOrange;
+        padding: 1.5rem;
+        border-radius: 1.5rem;
+        margin-bottom: 2rem;
+        &::placeholder {
+          color: hsla(246, 46%, 37%, 0.5);
+          // font-size: clamp(1.5rem, 2vw, 2rem);
+          font-size: 1.5rem;
+        }
+      }
+      button {
+        margin-top: 2rem;
+        border: none;
+        background-color: $darkOrange;
+        color: white;
+        padding: 1.5rem;
+        //   font-size: clamp(1.5rem, 2vw, 2rem);
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 1rem;
+        filter: $btnShadow;
+
+        &:hover {
+          cursor: pointer;
+          filter: $btnShadowHover;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    @include flexDefault(row);
+    max-width: 100%;
+    overflow: hidden;
+    img {
+      display: flex;
+      width: 50%;
+    }
+
+    .form-container {
+      width: 50%;
+
+      p {
+        margin-right: 10rem;
+      }
+    }
+  }
+}
