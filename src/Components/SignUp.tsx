@@ -3,7 +3,6 @@ import styles from "./scss/SignUp.module.scss";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
-
 import { UseUserContext } from "./Context";
 
 const SignUp = () => {
