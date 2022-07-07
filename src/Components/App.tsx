@@ -5,12 +5,12 @@ import SignUp from "./SignUp";
 import SignIn from "./SignIn";
 import DashBoard from "./DashBoard";
 import base from "./base.scss";
-import { UserAuthProvider } from "./Context";
+import { userAuth } from "./Context";
 
 const App = () => {
   return (
     <Router>
-      <UserAuthProvider>
+      <userAuth>
         <Routes>
           //figure out how to use exact path for /
           <Route path="/" element={<HomeScreen />}></Route>
@@ -18,7 +18,7 @@ const App = () => {
           <Route path="/sign-in" element={<SignIn />}></Route>
           <Route path="/dashboard" element={<DashBoard />}></Route>
         </Routes>
-      </UserAuthProvider>
+      </userAuth>
     </Router>
   );
 };

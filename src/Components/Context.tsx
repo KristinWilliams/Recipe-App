@@ -1,6 +1,7 @@
 import React, {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -17,41 +18,24 @@ interface contextProps extends React.HTMLAttributes<Element> {
   children: React.ReactNode;
 }
 
-const UserAuthContext = createContext<Function | string | null | Object>(null);
+interface IuserContext {
+  createUser: (email: string, pass: string) => Promise<UserCredential>;
+}
 
-export function UserAuthProvider({ children }: contextProps) {
-  const [currUser, setCurrUser] = useState<string | null>(null);
+export const userContext = createContext<IuserContext | null>(null);
 
-  const createAccount: Function = (email: string, pass: string) => {
+export function userAuth({ children }: contextProps) {
+  const createUser = (email: string, pass: string) => {
     return createUserWithEmailAndPassword(auth, email, pass);
   };
 
-  const login: Function = (email: string, pass: string) => {
-    return signInWithEmailAndPassword(auth, email, pass);
-  };
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setCurrUser(user.email);
-      }
-    });
-    return unsubscribe;
-  }, []);
-
-  const contextValue = {
-    currUser,
-    createAccount,
-    login,
-  };
-
   return (
-    <UserAuthContext.Provider value={{ contextValue }}>
+    <userContext.Provider value={{ createUser }}>
       {children}
-    </UserAuthContext.Provider>
+    </userContext.Provider>
   );
 }
 
 export function useUserContext() {
-  return useContext(UserAuthContext);
+  return useContext(userContext);
 }
