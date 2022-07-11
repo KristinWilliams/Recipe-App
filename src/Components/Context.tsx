@@ -7,7 +7,9 @@ import React, {
   useState,
 } from "react";
 import {
+  Auth,
   createUserWithEmailAndPassword,
+  getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
   UserCredential,
@@ -19,22 +21,33 @@ interface contextProps extends React.HTMLAttributes<Element> {
 }
 
 interface IuserContext {
-  createUser: (email: string, pass: string) => Promise<UserCredential>;
+  createUser: (
+    auth: Auth,
+    email: string,
+    pass: string
+  ) => Promise<UserCredential>;
+  loginUser: (email: string, pass: string) => Promise<UserCredential>;
 }
 
 const UserContext = createContext<IuserContext>({
-  createUser: (email: string, pass: string) => {
+  createUser: (auth: Auth, email: string, pass: string) => {
     return createUserWithEmailAndPassword(auth, email, pass);
+  },
+  loginUser: (email: string, pass: string) => {
+    return signInWithEmailAndPassword(auth, email, pass);
   },
 });
 
 export const UserAuth = ({ children }: contextProps) => {
-  const createUser = (email: string, pass: string) => {
+  const createUser = (auth: Auth, email: string, pass: string) => {
     return createUserWithEmailAndPassword(auth, email, pass);
+  };
+  const loginUser = (email: string, pass: string) => {
+    return signInWithEmailAndPassword(auth, email, pass);
   };
 
   return (
-    <UserContext.Provider value={{ createUser }}>
+    <UserContext.Provider value={{ createUser, loginUser }}>
       {children}
     </UserContext.Provider>
   );

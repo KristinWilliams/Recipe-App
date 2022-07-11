@@ -1,22 +1,23 @@
-import React, { useRef, useState, createContext, FC, ReactNode } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./scss/SignUp.module.scss";
-import { auth } from "../firebase";
-import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+// import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
+import { UseUserContext } from "./Context";
 
 const SignIn = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-  const [currUser, setCurrUser] = useState<string | null>(null);
+  const { loginUser } = UseUserContext();
 
   const signInOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
     if (emailRef.current && passRef.current) {
       const email = emailRef.current.value;
-      const password = passRef.current.value;
+      const pass = passRef.current.value;
       try {
-        await signInWithEmailAndPassword(auth, email, password);
+        await loginUser(email, pass);
+        console.log(loginUser(email, pass));
         navigate("/dashboard");
       } catch (error) {
         if (error instanceof Error) {
@@ -25,12 +26,6 @@ const SignIn = () => {
       }
     }
   };
-
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setCurrUser(user.email);
-    }
-  });
 
   return (
     <div className={styles.container}>

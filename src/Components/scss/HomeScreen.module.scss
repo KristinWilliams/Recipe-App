@@ -44,12 +44,16 @@ body {
       font-size: clamp(2rem, 2vw, 3rem);
       text-transform: uppercase;
       font-weight: bold;
-      color: white;
       background-color: $darkOrange;
       border: none;
       border-radius: 1rem;
       padding: 2rem 3rem;
       filter: $btnShadow;
+
+      .btn-link {
+        color: white;
+        text-decoration: none;
+      }
 
       &:hover {
         cursor: pointer;

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./scss/HomeScreen.module.scss";
+import { NavLink } from "react-router-dom";
 
 const HomeScreen: React.FC = () => {
   return (
@@ -11,9 +12,18 @@ const HomeScreen: React.FC = () => {
       <h1>
         Find the recipe for <span>you</span>
       </h1>
+
       <div className={styles["auth-btns"]}>
-        <button className={styles["sign-in-btn"]}>Sign in</button>
-        <button className={styles["sign-up-btn"]}>Sign up</button>
+        <button className={styles["sign-in-btn"]}>
+          <NavLink to="/sign-in" className={styles["btn-link"]}>
+            Sign in
+          </NavLink>
+        </button>
+        <button className={styles["sign-up-btn"]}>
+          <NavLink to="/sign-up" className={styles["btn-link"]}>
+            Sign up
+          </NavLink>
+        </button>
       </div>
     </div>
   );
