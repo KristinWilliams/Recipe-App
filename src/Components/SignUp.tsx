@@ -1,9 +1,10 @@
 import React, { useRef } from "react";
 import styles from "./scss/SignUp.module.scss";
-// import { auth } from "../firebase";
 import { useNavigate } from "react-router-dom";
 import { UseUserContext } from "./Context";
 import { auth } from "../firebase";
+import { NavLink } from "react-router-dom";
+import { UserAuth } from "./Context";
 
 const SignUp = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -11,6 +12,7 @@ const SignUp = () => {
   const confirmPassRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { createUser } = UseUserContext();
+  const { currUser } = UseUserContext();
 
   const signUpOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
@@ -20,8 +22,7 @@ const SignUp = () => {
       const confirmPass = confirmPassRef.current.value;
       if (pass === confirmPass) {
         try {
-          const user = await createUser(auth, email, pass);
-          console.log(pass, confirmPass);
+          await createUser(auth, email, pass);
           navigate("/dashboard");
         } catch (error) {
           console.log(error);
@@ -55,7 +56,9 @@ const SignUp = () => {
             Sign Up
           </button>
         </form>
-        <p>Already a member? Sign in</p>
+        <NavLink to="/sign-in" className={styles["nav-link"]}>
+          <p>Already a member? Sign in</p>
+        </NavLink>
       </div>
     </div>
   );

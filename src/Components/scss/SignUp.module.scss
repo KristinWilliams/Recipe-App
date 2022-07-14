@@ -19,16 +19,16 @@ body {
     display: flex;
     @include flexDefault(column);
     width: 100%;
-    p {
+    .nav-link {
       margin-top: 3rem;
       color: $lightOrange;
+      text-decoration: none;
       align-self: end;
     }
 
     h1 {
       color: $darkBlue;
       text-transform: uppercase;
-      // font-size: clamp(2.5rem, 2vw, 3rem);
       font-size: 2.5rem;
     }
 
@@ -82,7 +82,7 @@ body {
     .form-container {
       width: 50%;
 
-      p {
+      .nav-link {
         margin-right: 10rem;
       }
     }

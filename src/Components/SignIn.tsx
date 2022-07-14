@@ -1,15 +1,18 @@
 import React, { useRef, useState } from "react";
 import styles from "./scss/SignUp.module.scss";
-// import { auth } from "../firebase";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { UseUserContext } from "./Context";
+import { UserAuth } from "./Context";
+import { auth } from "../firebase";
 
 const SignIn = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { loginUser } = UseUserContext();
-
+  const { currUser } = UseUserContext();
+  const { setCurrUser } = UseUserContext();
   const signInOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
     if (emailRef.current && passRef.current) {
@@ -17,7 +20,6 @@ const SignIn = () => {
       const pass = passRef.current.value;
       try {
         await loginUser(email, pass);
-        console.log(loginUser(email, pass));
         navigate("/dashboard");
       } catch (error) {
         if (error instanceof Error) {
@@ -44,6 +46,9 @@ const SignIn = () => {
             Sign In
           </button>
         </form>
+        <NavLink to="/sign-up" className={styles["nav-link"]}>
+          <p>Not a member? Sign up</p>
+        </NavLink>
       </div>
     </div>
   );
