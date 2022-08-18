@@ -1,0 +1,58 @@
+@import "./base";
+@import "./variables";
+
+.container {
+  @include flexDefault(column);
+  background-color: white;
+  .dashboard {
+    @include flexDefault(row);
+    width: 100%;
+    justify-content: space-between;
+    padding: 1.5rem;
+
+    svg,
+    .like-btn {
+      filter: drop-shadow(0.5px 0.5px 0.5px hsla(0, 0%, 0%, 0.5));
+
+      &:hover {
+        cursor: pointer;
+        filter: drop-shadow(2px 2px 2px hsla(0, 0%, 0%, 0.25));
+      }
+    }
+    .like-btn {
+      display: none;
+    }
+  }
+
+  .recipe-img-container {
+    margin: 3rem auto;
+    .recipe-img {
+      width: 25rem;
+      height: 25rem;
+      border-radius: 50%;
+      filter: drop-shadow(0.5px 0.5px 0.5px hsla(0, 0%, 0%, 0.5));
+    }
+  }
+
+  .title-card {
+    background-color: $darkOrange;
+    color: white;
+    @include flexDefault(column);
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    .cal-serving {
+      @include flexDefault(row);
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0.5rem;
+      color: $beige;
+
+      .calories {
+        margin-right: 3rem;
+      }
+      .servings {
+        margin-left: 3rem;
+      }
+    }
+  }
+}
