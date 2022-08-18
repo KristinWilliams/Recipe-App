@@ -1,0 +1,33 @@
+@import "./base";
+@import "./variables";
+
+.container {
+  background-color: white;
+  margin-top: 2rem;
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 1rem;
+    overflow-x: auto;
+    padding-left: 1rem;
+    // scrollbar-width: none;
+    li {
+      color: $darkBlue;
+      list-style: none;
+      padding: 1rem;
+      border-radius: 2rem;
+      font-size: 1.2rem;
+      text-align: center;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
+  }
+  .active {
+    background-color: $darkOrange;
+    color: white;
+  }
+}

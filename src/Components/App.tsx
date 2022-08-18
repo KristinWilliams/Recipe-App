@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from "./HomeScreen";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-import DashBoard from "./DashBoard";
+import Dashboard from "./Dashboard";
 import base from "./base.scss";
 import { UserAuth } from "./Context";
 
@@ -15,7 +15,7 @@ const App = () => {
           <Route path="/" element={<HomeScreen />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="/sign-in" element={<SignIn />}></Route>
-          <Route path="/dashboard" element={<DashBoard />}></Route>
+          <Route path="/dashboard" element={<Dashboard />}></Route>
         </Routes>
       </UserAuth>
     </Router>
