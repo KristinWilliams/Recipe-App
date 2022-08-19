@@ -4,12 +4,12 @@ import styles from "./scss/Filters.module.scss";
 const Filters = ({
   setStatus,
 }: {
-  setStatus: React.Dispatch<React.SetStateAction<boolean>>;
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   return (
     <div className={styles.container}>
       <nav>
-        <img src="img/back-arrow.svg" onClick={() => setStatus(false)} />
+        <img src="img/back-arrow.svg" onClick={() => setStatus("home")} />
         <h1>Filters</h1>
         <h5>Reset</h5>
       </nav>

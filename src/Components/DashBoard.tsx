@@ -7,6 +7,7 @@ import { auth } from "../firebase";
 import { UserAuth } from "./Context";
 import ScrollBar from "./ScrollBar";
 import Filters from "./Filters";
+import RecipePage from "./RecipePage";
 
 interface Recipe {
   recipe: {
@@ -24,7 +25,7 @@ const Dashboard = () => {
     signOutUser(auth);
     navigate("/");
   };
-  const [filterStatus, setFilterStatus] = useState<boolean>(false);
+  const [currPage, setCurrPage] = useState<string>("home");
   const [activeBtn, setActiveBtn] = useState<string>("main-course");
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -47,9 +48,9 @@ const Dashboard = () => {
 
   return (
     <>
-      {filterStatus ? (
-        <Filters setStatus={setFilterStatus} />
-      ) : (
+      {currPage === "filter" ? (
+        <Filters setStatus={setCurrPage} />
+      ) : currPage === "home" ? (
         <div className={styles.container}>
           <nav>
             <h3>Welcome Back</h3>
@@ -80,27 +81,26 @@ const Dashboard = () => {
             <img
               src="img/filter-icon.svg"
               className={styles["filter-icon"]}
-              onClick={() => setFilterStatus(true)}
+              onClick={() => setCurrPage("filter")}
             />
           </div>
           <div className={styles["all-recipes"]}>
             {recipes.map((recipe) => (
-              <NavLink
-                to={{
-                  pathname: "/sign-up",
-                }}
+              <div
+                className={styles.recipe}
+                onClick={() => setCurrPage("recipe")}
               >
-                <div className={styles.recipe}>
-                  <div className={styles["img-container"]}>
-                    <img src={recipe.recipe.image} />
-                  </div>
-                  <h4>{recipe.recipe.label}</h4>
+                <div className={styles["img-container"]}>
+                  <img src={recipe.recipe.image} />
                 </div>
-              </NavLink>
+                <h4>{recipe.recipe.label}</h4>
+              </div>
             ))}
           </div>
         </div>
-      )}
+      ) : currPage === "recipe" ? (
+        <RecipePage setStatus={setCurrPage} />
+      ) : null}
     </>
   );
 };
