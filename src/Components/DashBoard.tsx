@@ -14,6 +14,8 @@ interface Recipe {
     label: string;
     src: HTMLImageElement;
     image: string;
+    calories: number;
+    yield: number;
   };
 }
 
@@ -26,6 +28,10 @@ const Dashboard = () => {
     navigate("/");
   };
   const [currPage, setCurrPage] = useState<string>("home");
+  const [currTitle, setCurrTitle] = useState<string>("title");
+  const [currImg, setCurrImg] = useState<string>("img");
+  const [currCal, setCurrCal] = useState<number>(0);
+  const [currServ, setCurrServ] = useState<number>(0);
   const [activeBtn, setActiveBtn] = useState<string>("main-course");
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -88,7 +94,13 @@ const Dashboard = () => {
             {recipes.map((recipe) => (
               <div
                 className={styles.recipe}
-                onClick={() => setCurrPage("recipe")}
+                onClick={() => {
+                  setCurrPage("recipe");
+                  setCurrTitle(recipe.recipe.label);
+                  setCurrImg(recipe.recipe.image);
+                  setCurrCal(recipe.recipe.calories);
+                  setCurrServ(recipe.recipe.yield);
+                }}
               >
                 <div className={styles["img-container"]}>
                   <img src={recipe.recipe.image} />
@@ -99,7 +111,13 @@ const Dashboard = () => {
           </div>
         </div>
       ) : currPage === "recipe" ? (
-        <RecipePage setStatus={setCurrPage} />
+        <RecipePage
+          setStatus={setCurrPage}
+          title={currTitle}
+          img={currImg}
+          calories={currCal}
+          servings={currServ}
+        />
       ) : null}
     </>
   );

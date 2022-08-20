@@ -1,11 +1,21 @@
 import React from "react";
 import styles from "./scss/RecipePage.module.scss";
 
+interface RecipeInfo {
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  title: string;
+  img: string;
+  calories: number;
+  servings: number;
+}
+
 const RecipePage = ({
   setStatus,
-}: {
-  setStatus: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+  title,
+  img,
+  calories,
+  servings,
+}: RecipeInfo) => {
   return (
     <div className={styles.container}>
       <div className={styles.dashboard}>
@@ -25,13 +35,13 @@ const RecipePage = ({
         <img src="img/like-btn.svg" className={styles["like-btn"]} />
       </div>
       <div className={styles["recipe-img-container"]}>
-        <img src="img/signup-bg.png" className={styles["recipe-img"]} />
+        <img src={img} className={styles["recipe-img"]} />
       </div>
       <div className={styles["title-card"]}>
-        <h1>Beef Burger</h1>
+        <h1>{title}</h1>
         <div className={styles["cal-serving"]}>
-          <p className={styles.calories}>120 cal</p>
-          <p className={styles.servings}>30 servings</p>
+          <p className={styles.calories}>{Math.round(calories)} cals</p>
+          <p className={styles.servings}>{servings} servings</p>
         </div>
       </div>
     </div>
