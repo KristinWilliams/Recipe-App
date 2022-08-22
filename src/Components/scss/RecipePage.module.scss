@@ -61,9 +61,82 @@
     align-self: start;
     padding: 2rem;
     color: $darkBlue;
-
+    margin-top: 2rem;
     .recipe-modal-btn {
       margin-right: 1rem;
+    }
+
+    .recipe-modal-btn,
+    .nutr-modal-btn {
+      &:hover {
+        cursor: pointer;
+        filter: drop-shadow(0.5px 0.5px 0.5px hsla(0, 0%, 0%, 0.25));
+      }
+    }
+  }
+
+  .recipe-info-box {
+    border: 1px solid $lightOrange;
+    width: 80%;
+    height: 20rem;
+    border-radius: 2rem;
+    @include flexDefault(column);
+    margin-bottom: 3rem;
+
+    a {
+      font-size: 1.4rem;
+      color: $darkBlue;
+    }
+
+    .nutrition-box {
+      padding: 2rem;
+      overflow: scroll;
+
+      h3 {
+        margin-bottom: 1rem;
+        color: $darkBlue;
+      }
+
+      ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 2rem;
+        gap: 1rem;
+        li {
+          background-color: $darkOrange;
+          color: white;
+          border-radius: 50rem;
+          padding: 1rem;
+          width: 8rem;
+          text-align: center;
+          font-size: 1rem;
+        }
+      }
+
+      .macro-list {
+        margin-bottom: 3rem;
+        // ul {
+        //   @include flexDefault(row);
+        //   li {
+        //     margin-right: 1rem;
+        //     margin-left: 1rem;
+        //   }
+        // }
+      }
+
+      .diet-list {
+        ul {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          row-gap: 2rem;
+          justify-items: center;
+          // li {
+          //   margin-right: 1rem;
+          //   margin-left: 1rem;
+          // }
+        }
+      }
     }
   }
 }
