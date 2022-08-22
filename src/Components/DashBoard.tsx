@@ -112,11 +112,11 @@ const Dashboard = () => {
         </div>
       ) : currPage === "recipe" ? (
         <RecipePage
-          setStatus={setCurrPage}
-          title={currTitle}
-          img={currImg}
-          calories={currCal}
-          servings={currServ}
+        // setStatus={setCurrPage}
+        // title={currTitle}
+        // img={currImg}
+        // calories={currCal}
+        // servings={currServ}
         />
       ) : null}
     </>

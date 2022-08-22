@@ -55,4 +55,15 @@
       }
     }
   }
+
+  .recipe-nutr-btn {
+    @include flexDefault(row);
+    align-self: start;
+    padding: 2rem;
+    color: $darkBlue;
+
+    .recipe-modal-btn {
+      margin-right: 1rem;
+    }
+  }
 }

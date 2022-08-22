@@ -16,7 +16,7 @@ const App = () => {
           <Route path="/" element={<HomeScreen />}></Route>
           <Route path="/sign-up" element={<SignUp />}></Route>
           <Route path="/sign-in" element={<SignIn />}></Route>
-          <Route path="/dashboard" element={<Dashboard />}></Route>
+          <Route path="/dashboard" element={<RecipePage />}></Route>
         </Routes>
       </UserAuth>
     </Router>
