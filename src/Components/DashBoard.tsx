@@ -8,6 +8,7 @@ import { UserAuth } from "./Context";
 import ScrollBar from "./ScrollBar";
 import Filters from "./Filters";
 import RecipePage from "./RecipePage";
+import { ObjectEncodingOptions } from "fs";
 
 interface Recipe {
   recipe: {
@@ -16,6 +17,19 @@ interface Recipe {
     image: string;
     calories: number;
     yield: number;
+    url: string;
+    totalNutrients: {
+      FAT: {
+        quantity: number;
+      };
+      CHOCDF: {
+        quantity: number;
+      };
+      PROCNT: {
+        quantity: number;
+      };
+    };
+    healthLabels: [string];
   };
 }
 
@@ -32,7 +46,14 @@ const Dashboard = () => {
   const [currImg, setCurrImg] = useState<string>("img");
   const [currCal, setCurrCal] = useState<number>(0);
   const [currServ, setCurrServ] = useState<number>(0);
+  const [currUrl, setCurrUrl] = useState<string>("url");
   const [activeBtn, setActiveBtn] = useState<string>("main-course");
+  const [currFat, setCurrFat] = useState<number>(0);
+  const [currCarbs, setCurrCarbs] = useState<number>(0);
+  const [currProtein, setCurrProtein] = useState<number>(0);
+  const [currDietType, setCurrDietType] = useState<Array<string>>([
+    "diet type",
+  ]);
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -100,6 +121,11 @@ const Dashboard = () => {
                   setCurrImg(recipe.recipe.image);
                   setCurrCal(recipe.recipe.calories);
                   setCurrServ(recipe.recipe.yield);
+                  setCurrUrl(recipe.recipe.url);
+                  setCurrFat(recipe.recipe.totalNutrients.FAT.quantity);
+                  setCurrCarbs(recipe.recipe.totalNutrients.CHOCDF.quantity);
+                  setCurrProtein(recipe.recipe.totalNutrients.PROCNT.quantity);
+                  setCurrDietType(recipe.recipe.healthLabels);
                 }}
               >
                 <div className={styles["img-container"]}>
@@ -117,6 +143,11 @@ const Dashboard = () => {
           img={currImg}
           calories={currCal}
           servings={currServ}
+          url={currUrl}
+          carbs={currCarbs}
+          fat={currFat}
+          protein={currProtein}
+          dietType={currDietType}
         />
       ) : null}
     </>

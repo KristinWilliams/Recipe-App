@@ -7,6 +7,11 @@ interface RecipeInfo {
   img: string;
   calories: number;
   servings: number;
+  url: string;
+  carbs: number;
+  fat: number;
+  protein: number;
+  dietType: Array<string>;
 }
 
 // {Math.round(calories)}
@@ -17,6 +22,11 @@ const RecipePage = ({
   img,
   calories,
   servings,
+  url,
+  carbs,
+  fat,
+  protein,
+  dietType,
 }: RecipeInfo) => {
   const [currModal, setCurrModal] = useState<string>("recipe");
   return (
@@ -38,13 +48,13 @@ const RecipePage = ({
         <img src="img/like-btn.svg" className={styles["like-btn"]} />
       </div>
       <div className={styles["recipe-img-container"]}>
-        <img src="img/signup-bg.png" className={styles["recipe-img"]} />
+        <img src={img} className={styles["recipe-img"]} />
       </div>
       <div className={styles["title-card"]}>
-        <h1>title</h1>
+        <h1>{title}</h1>
         <div className={styles["cal-serving"]}>
-          <p className={styles.calories}> cals</p>
-          <p className={styles.servings}>servings</p>
+          <p className={styles.calories}>{Math.round(calories)} cals</p>
+          <p className={styles.servings}>{servings} servings</p>
         </div>
       </div>
       <div className={styles["recipe-nutr-btn"]}>
@@ -72,26 +82,23 @@ const RecipePage = ({
       </div>
       <div className={styles["recipe-info-box"]}>
         {currModal === "recipe" ? (
-          <a href="https://www.google.com/">Click here for full Recipe</a>
+          <a href={url}>Click here for full Recipe</a>
         ) : currModal === "nutrition" ? (
           <div className={styles["nutrition-box"]}>
             <div className={styles["macro-list"]}>
               <h3>Macros</h3>
               <ul>
-                <li>Carbs:</li>
-                <li>Protein:</li>
-                <li>Fat:</li>
+                <li>Carbs: {Math.round(carbs)}g</li>
+                <li>Protein: {Math.round(protein)}g</li>
+                <li>Fat: {Math.round(fat)}g</li>
               </ul>
             </div>
             <div className={styles["diet-list"]}>
               <h3>Diet Type</h3>
               <ul>
-                <li>Carbs:</li>
-                <li>Protein:</li>
-                <li>Fat:</li>
-                <li>Carbs:</li>
-                <li>Protein:</li>
-                <li>Fat:</li>
+                {dietType.map((d, i) => {
+                  return <li key={i}>{d}</li>;
+                })}
               </ul>
             </div>
           </div>
