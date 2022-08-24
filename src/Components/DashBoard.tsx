@@ -54,6 +54,7 @@ const Dashboard = () => {
   const [currDietType, setCurrDietType] = useState<Array<string>>([
     "diet type",
   ]);
+  const [checkbox, setCheckbox] = useState<Array<string> | null>([]);
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -61,6 +62,7 @@ const Dashboard = () => {
     e.preventDefault();
     if (inputRef.current) {
       const inputValue = inputRef.current.value;
+      console.log(checkbox);
       try {
         await fetch(
           `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09`
@@ -76,7 +78,7 @@ const Dashboard = () => {
   return (
     <>
       {currPage === "filter" ? (
-        <Filters setStatus={setCurrPage} />
+        <Filters setStatus={setCurrPage} setCheckbox={setCheckbox} />
       ) : currPage === "home" ? (
         <div className={styles.container}>
           <nav>

@@ -3,9 +3,74 @@ import styles from "./scss/Filters.module.scss";
 
 const Filters = ({
   setStatus,
+  setCheckbox,
 }: {
   setStatus: React.Dispatch<React.SetStateAction<string>>;
+  setCheckbox: React.Dispatch<React.SetStateAction<Array<string> | null>>;
 }) => {
+  const intolerances = [
+    {
+      id: "alcohol-free",
+      name: "Alcohol-free",
+    },
+    {
+      id: "dairy-free",
+      name: "Dairy-free",
+    },
+    {
+      id: "egg-free",
+      name: "Egg-free",
+    },
+    {
+      id: "fish-free",
+      name: "Fish-free",
+    },
+    {
+      id: "fodmap-free",
+      name: "FODMAP-free",
+    },
+    {
+      id: "gluten-free",
+      name: "Gluten-free",
+    },
+    {
+      id: "keto-friendly",
+      name: "Keto",
+    },
+    {
+      id: "low-sugar",
+      name: "Low-Sugar",
+    },
+    {
+      id: "soy-free",
+      name: "Soy-Free",
+    },
+    {
+      id: "tree-nut-free",
+      name: "Tree-Nut-Free",
+    },
+    {
+      id: "vegan",
+      name: "Vegan",
+    },
+    {
+      id: "vegetarian",
+      name: "Vegetarian",
+    },
+  ];
+  const intolArr: any = [];
+  const onCheckChange = (e: React.ChangeEvent<any>) => {
+    const value = e.target.id;
+    if (e.target.checked) {
+      intolArr.push(value);
+      setCheckbox(intolArr);
+      console.log(intolArr);
+    } else if (!e.target.checked) {
+      intolArr.splice(intolArr.indexOf(value), 1);
+      setCheckbox(intolArr);
+      console.log(intolArr);
+    }
+  };
   return (
     <div className={styles.container}>
       <nav>
@@ -18,12 +83,7 @@ const Filters = ({
           <header>
             <h3>Cuisine</h3>
           </header>
-
           <ul>
-            <li>
-              <input type="checkbox" id="african" name="african"></input>
-              <label htmlFor="african">African</label>
-            </li>
             <li>
               <input type="checkbox" id="american" name="american"></input>
               <label htmlFor="american">American</label>
@@ -33,40 +93,36 @@ const Filters = ({
               <label htmlFor="british">British</label>
             </li>
             <li>
+              <input type="checkbox" id="caribbean" name="caribbean"></input>
+              <label htmlFor="caribbean">Caribbean</label>
+            </li>
+            <li>
               <input type="checkbox" id="chinese" name="chinese"></input>
-              <label htmlFor="european">Chinese</label>
+              <label htmlFor="chinese">Chinese</label>
             </li>
             <li>
               <input type="checkbox" id="french" name="french"></input>
               <label htmlFor="french">French</label>
             </li>
             <li>
-              <input type="checkbox" id="german" name="german"></input>
-              <label htmlFor="german">German</label>
-            </li>
-            <li>
               <input type="checkbox" id="greek" name="greek"></input>
               <label htmlFor="greek">Greek</label>
+            </li>
+            <li>
+              <input type="checkbox" id="indian" name="indian"></input>
+              <label htmlFor="indian">Indian</label>
+            </li>
+            <li>
+              <input type="checkbox" id="italian" name="italian"></input>
+              <label htmlFor="italian">Italian</label>
             </li>
             <li>
               <input type="checkbox" id="japanese" name="japanese"></input>
               <label htmlFor="japanese">Japanese</label>
             </li>
             <li>
-              <input type="checkbox" id="jewish" name="jewish"></input>
-              <label htmlFor="jewish">Jewish</label>
-            </li>
-            <li>
               <input type="checkbox" id="korean" name="korean"></input>
               <label htmlFor="korean">Korean</label>
-            </li>
-            <li>
-              <input
-                type="checkbox"
-                id="latin-american"
-                name="latin-american"
-              ></input>
-              <label htmlFor="latin-american">Latin American</label>
             </li>
             <li>
               <input
@@ -77,8 +133,8 @@ const Filters = ({
               <label htmlFor="mediterranean">Mediterranean</label>
             </li>
             <li>
-              <input type="checkbox" id="thai" name="thai"></input>
-              <label htmlFor="thai">Thai</label>
+              <input type="checkbox" id="mexican" name="mexican"></input>
+              <label htmlFor="mexican">Mexican</label>
             </li>
           </ul>
         </div>
@@ -89,44 +145,28 @@ const Filters = ({
           </header>
           <ul>
             <li>
-              <input
-                type="checkbox"
-                id="gluten-free"
-                name="gluten-free"
-              ></input>
-              <label htmlFor="gluten-free">Gluten Free</label>
-            </li>
-            <li>
-              <input type="checkbox" id="ketogenic" name="ketogenic"></input>
-              <label htmlFor="ketogenic">Ketogenic</label>
-            </li>
-            <li>
-              <input type="checkbox" id="vegetarian" name="vegetarian"></input>
-              <label htmlFor="vegetarian">Vegetarian</label>
-            </li>
-            <li>
-              <input type="checkbox" id="vegan" name="vegan"></input>
-              <label htmlFor="vegan">Vegan</label>
+              <input type="checkbox" id="high-fiber" name="high-fiber"></input>
+              <label htmlFor="high-fiber">High Fiber</label>
             </li>
             <li>
               <input
                 type="checkbox"
-                id="pescetarian"
-                name="pescetarian"
+                id="high-protein"
+                name="high-protein"
               ></input>
-              <label htmlFor="pescetarian">Pescetarian</label>
+              <label htmlFor="high-protein">High Protein</label>
             </li>
             <li>
-              <input type="checkbox" id="paleo" name="paleo"></input>
-              <label htmlFor="paleo">Paleo</label>
+              <input type="checkbox" id="low-carb" name="low-carb"></input>
+              <label htmlFor="low-carb">Low Carb</label>
             </li>
             <li>
-              <input type="checkbox" id="low-fodmap" name="low-fodmap"></input>
-              <label htmlFor="low-fodmap">Low FODMAP</label>
+              <input type="checkbox" id="low-fat" name="low-fat"></input>
+              <label htmlFor="low-fat">Low Fat</label>
             </li>
             <li>
-              <input type="checkbox" id="whole30" name="whole30"></input>
-              <label htmlFor="whole30">Whole30</label>
+              <input type="checkbox" id="low-sodium" name="low-sodium"></input>
+              <label htmlFor="low-sodium">Low Sodium</label>
             </li>
           </ul>
         </div>
@@ -136,38 +176,19 @@ const Filters = ({
             <h3>Intolerances</h3>
           </header>
           <ul>
-            <li>
-              <input type="checkbox" id="dairy" name="dairy"></input>
-              <label htmlFor="dairy">Dairy</label>
-            </li>
-            <li>
-              <input type="checkbox" id="egg" name="egg"></input>
-              <label htmlFor="egg">Egg</label>
-            </li>
-            <li>
-              <input type="checkbox" id="peanut" name="peanut"></input>
-              <label htmlFor="peanut">Peanut</label>
-            </li>
-            <li>
-              <input type="checkbox" id="seafood" name="seafood"></input>
-              <label htmlFor="seafood">Seafood</label>
-            </li>
-            <li>
-              <input type="checkbox" id="sesame" name="sesame"></input>
-              <label htmlFor="sesame">Sesame</label>
-            </li>
-            <li>
-              <input type="checkbox" id="shellfish" name="shellfish"></input>
-              <label htmlFor="shellfish">Shellfish</label>
-            </li>
-            <li>
-              <input type="checkbox" id="soy" name="soy"></input>
-              <label htmlFor="soy">Soy</label>
-            </li>
-            <li>
-              <input type="checkbox" id="tree-nut" name="tree-nut"></input>
-              <label htmlFor="tree-nut">Tree Nut</label>
-            </li>
+            {intolerances.map((o, i) => {
+              return (
+                <li key={i}>
+                  <input
+                    type="checkbox"
+                    id={o.id}
+                    name={o.id}
+                    onChange={onCheckChange}
+                  ></input>
+                  <label htmlFor={o.id}>{o.name}</label>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </div>
