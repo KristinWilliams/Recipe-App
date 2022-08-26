@@ -7,8 +7,8 @@ const Filters = ({
   checkbox,
 }: {
   setStatus: React.Dispatch<React.SetStateAction<string>>;
-  setCheckbox: React.Dispatch<React.SetStateAction<string | null>>;
-  checkbox: string | null;
+  setCheckbox: React.Dispatch<React.SetStateAction<Array<any>>>;
+  checkbox: Array<any>;
 }) => {
   const intolerances = [
     {
@@ -60,15 +60,24 @@ const Filters = ({
       name: "Vegetarian",
     },
   ];
-  useEffect(() => {});
+  let checkArr = checkbox;
   const onCheckChange = (e: React.ChangeEvent<any>) => {
     const value = e.target.id;
     if (e.target.checked) {
-      localStorage.setItem(value, value);
-      setCheckbox(localStorage.getItem(value));
+      checkArr.push(value);
+      localStorage.setItem("filterArr", JSON.stringify(checkArr));
+      let storage = localStorage.getItem("filterArr");
+      if (storage) {
+        setCheckbox(JSON.parse(storage));
+        console.log(checkArr);
+      }
     } else if (!e.target.checked) {
-      localStorage.removeItem(value);
-      setCheckbox(null);
+      checkArr.splice(checkArr.indexOf(value), 1);
+      localStorage.setItem("filterArr", JSON.stringify(checkArr));
+      let storage = localStorage.getItem("filterArr");
+      if (storage) {
+        setCheckbox(JSON.parse(storage));
+      }
     }
   };
   return (
@@ -184,7 +193,7 @@ const Filters = ({
                     id={o.id}
                     value={o.id}
                     onChange={onCheckChange}
-                    checked={checkbox === o.id ? true : false}
+                    checked={checkbox.includes(o.id) ? true : false}
                   ></input>
                   <label htmlFor={o.id}>{o.name}</label>
                 </li>

@@ -54,7 +54,7 @@ const Dashboard = () => {
   const [currDietType, setCurrDietType] = useState<Array<string>>([
     "diet type",
   ]);
-  const [checkbox, setCheckbox] = useState<string | null>(null);
+  const [checkbox, setCheckbox] = useState<Array<any>>(["", ""]);
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
