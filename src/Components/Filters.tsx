@@ -69,7 +69,6 @@ const Filters = ({
       let storage = localStorage.getItem("filterArr");
       if (storage) {
         setCheckbox(JSON.parse(storage));
-        console.log(checkArr);
       }
     } else if (!e.target.checked) {
       checkArr.splice(checkArr.indexOf(value), 1);
@@ -88,7 +87,7 @@ const Filters = ({
         <h5>Reset</h5>
       </nav>
       <div className={styles["filter-list"]}>
-        <div className={styles.cuisine}>
+        {/* <div className={styles.cuisine}>
           <header>
             <h3>Cuisine</h3>
           </header>
@@ -178,7 +177,7 @@ const Filters = ({
               <label htmlFor="low-sodium">Low Sodium</label>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         <div className={styles.intolerances}>
           <header className={styles["int-header"]}>
