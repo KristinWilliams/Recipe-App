@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./scss/Filters.module.scss";
 
 const Filters = ({
   setStatus,
   setCheckbox,
+  checkbox,
 }: {
   setStatus: React.Dispatch<React.SetStateAction<string>>;
-  setCheckbox: React.Dispatch<React.SetStateAction<Array<string> | null>>;
+  setCheckbox: React.Dispatch<React.SetStateAction<string | null>>;
+  checkbox: string | null;
 }) => {
   const intolerances = [
     {
@@ -58,17 +60,15 @@ const Filters = ({
       name: "Vegetarian",
     },
   ];
-  const intolArr: any = [];
+  useEffect(() => {});
   const onCheckChange = (e: React.ChangeEvent<any>) => {
     const value = e.target.id;
     if (e.target.checked) {
-      intolArr.push(value);
-      setCheckbox(intolArr);
-      console.log(intolArr);
+      localStorage.setItem(value, value);
+      setCheckbox(localStorage.getItem(value));
     } else if (!e.target.checked) {
-      intolArr.splice(intolArr.indexOf(value), 1);
-      setCheckbox(intolArr);
-      console.log(intolArr);
+      localStorage.removeItem(value);
+      setCheckbox(null);
     }
   };
   return (
@@ -182,8 +182,9 @@ const Filters = ({
                   <input
                     type="checkbox"
                     id={o.id}
-                    name={o.id}
+                    value={o.id}
                     onChange={onCheckChange}
+                    checked={checkbox === o.id ? true : false}
                   ></input>
                   <label htmlFor={o.id}>{o.name}</label>
                 </li>

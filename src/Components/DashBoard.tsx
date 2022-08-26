@@ -54,7 +54,7 @@ const Dashboard = () => {
   const [currDietType, setCurrDietType] = useState<Array<string>>([
     "diet type",
   ]);
-  const [checkbox, setCheckbox] = useState<Array<string> | null>([]);
+  const [checkbox, setCheckbox] = useState<string | null>(null);
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -78,7 +78,11 @@ const Dashboard = () => {
   return (
     <>
       {currPage === "filter" ? (
-        <Filters setStatus={setCurrPage} setCheckbox={setCheckbox} />
+        <Filters
+          setStatus={setCurrPage}
+          setCheckbox={setCheckbox}
+          checkbox={checkbox}
+        />
       ) : currPage === "home" ? (
         <div className={styles.container}>
           <nav>

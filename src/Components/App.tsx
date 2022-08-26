@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomeScreen from "./HomeScreen";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
-import Dashboard from "./Dashboard";
+import Dashboard from "./DashBoard";
 import RecipePage from "./RecipePage";
 import base from "./base.scss";
 import { UserAuth } from "./Context";
