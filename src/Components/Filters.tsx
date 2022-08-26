@@ -58,19 +58,19 @@ const Filters = ({
       name: "Vegetarian",
     },
   ];
+
   const intolArr: any = [];
   const onCheckChange = (e: React.ChangeEvent<any>) => {
     const value = e.target.id;
     if (e.target.checked) {
       intolArr.push(value);
-      setCheckbox(intolArr);
-      console.log(intolArr);
+      localStorage.setItem(value, value);
     } else if (!e.target.checked) {
       intolArr.splice(intolArr.indexOf(value), 1);
-      setCheckbox(intolArr);
-      console.log(intolArr);
+      localStorage.removeItem(value);
     }
   };
+
   return (
     <div className={styles.container}>
       <nav>
@@ -182,7 +182,9 @@ const Filters = ({
                   <input
                     type="checkbox"
                     id={o.id}
+                    className={"check"}
                     name={o.id}
+                    checked={localStorage.getItem(o.id) !== null ? true : false}
                     onChange={onCheckChange}
                   ></input>
                   <label htmlFor={o.id}>{o.name}</label>

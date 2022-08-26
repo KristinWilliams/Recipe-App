@@ -62,7 +62,12 @@ const Dashboard = () => {
     e.preventDefault();
     if (inputRef.current) {
       const inputValue = inputRef.current.value;
-      console.log(checkbox);
+      var value = localStorage.getItem("filterArr");
+      if (typeof value === "string") {
+        const parse = JSON.parse(value);
+        console.log(parse);
+      }
+
       try {
         await fetch(
           `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09`
