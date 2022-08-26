@@ -54,7 +54,7 @@ const Dashboard = () => {
   const [currDietType, setCurrDietType] = useState<Array<string>>([
     "diet type",
   ]);
-  const [checkbox, setCheckbox] = useState<Array<any>>(["", ""]);
+  const [checkbox, setCheckbox] = useState<Array<any>>([]);
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -62,15 +62,28 @@ const Dashboard = () => {
     e.preventDefault();
     if (inputRef.current) {
       const inputValue = inputRef.current.value;
-      console.log(checkbox);
-      try {
-        await fetch(
-          `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09`
-        )
-          .then((res) => res.json())
-          .then((data) => setRecipes(data.hits));
-      } catch (error) {
-        console.log(error);
+      if (!checkbox.length) {
+        try {
+          await fetch(
+            `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09`
+          )
+            .then((res) => res.json())
+            .then((data) => setRecipes(data.hits));
+        } catch (error) {
+          console.log(error);
+        }
+      } else if (checkbox.length > 0) {
+        try {
+          await fetch(
+            `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09&health=${checkbox.join(
+              "&health="
+            )}`
+          )
+            .then((res) => res.json())
+            .then((data) => setRecipes(data.hits));
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
   };
