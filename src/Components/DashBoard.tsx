@@ -41,6 +41,8 @@ const Dashboard = () => {
     signOutUser(auth);
     navigate("/");
   };
+  console.log(currUser);
+
   const [currPage, setCurrPage] = useState<string>("home");
   const [currTitle, setCurrTitle] = useState<string>("title");
   const [currImg, setCurrImg] = useState<string>("img");
@@ -99,7 +101,11 @@ const Dashboard = () => {
       ) : currPage === "home" ? (
         <div className={styles.container}>
           <nav>
-            <h3>Welcome Back</h3>
+            <div>
+              <h3 className={styles.welcome}>Welcome Back</h3>
+              <h3>{currUser.displayName.toUpperCase()}</h3>
+            </div>
+
             <div className={styles["nav-icons"]}>
               <img src="img/bag-heart.svg" className={styles["likes-icon"]} />
               <img

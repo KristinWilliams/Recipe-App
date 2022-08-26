@@ -63,7 +63,9 @@ export const UserAuth = ({ children }: contextProps) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
-      setCurrUser(u);
+      if (u) {
+        setCurrUser(u);
+      }
     });
     return unsubscribe();
   }, []);
