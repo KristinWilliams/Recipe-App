@@ -31,6 +31,10 @@ interface IuserContext {
   signOutUser: (auth: Auth) => void;
   currUser?: any;
   setCurrUser?: React.Dispatch<React.SetStateAction<Object | null>>;
+  displayName?: string | undefined | null;
+  setDisplayName?: React.Dispatch<
+    React.SetStateAction<string | undefined | null>
+  >;
 }
 
 const UserContext = createContext<IuserContext>({
@@ -50,6 +54,9 @@ export const UserAuth = ({ children }: contextProps) => {
   const [currUser, setCurrUser] = useState<Object | null | string>({
     user: auth.currentUser,
   });
+  const [displayName, setDisplayName] = useState<string | undefined | null>(
+    "loading"
+  );
 
   const createUser = (auth: Auth, email: string, pass: string) => {
     return createUserWithEmailAndPassword(auth, email, pass);
@@ -65,6 +72,7 @@ export const UserAuth = ({ children }: contextProps) => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       if (u) {
         setCurrUser(u);
+        setDisplayName(u.displayName);
       }
     });
     return unsubscribe();
@@ -78,6 +86,8 @@ export const UserAuth = ({ children }: contextProps) => {
         signOutUser,
         currUser,
         setCurrUser,
+        displayName,
+        setDisplayName,
       }}
     >
       {children}
