@@ -35,7 +35,6 @@ interface Recipe {
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { currUser } = UseUserContext();
   const { displayName } = UseUserContext();
   const { setDisplayName } = UseUserContext();
   const { signOutUser } = UseUserContext();
@@ -43,12 +42,6 @@ const Dashboard = () => {
     signOutUser(auth);
     navigate("/");
   };
-
-  // useEffect(() => {
-  //   if (currUser.displayName) {
-  //     setDisplayName(currUser.displayName);
-  //   }
-  // }, [displayName]);
 
   const [currPage, setCurrPage] = useState<string>("home");
   const [currTitle, setCurrTitle] = useState<string>("title");
@@ -110,7 +103,7 @@ const Dashboard = () => {
           <nav>
             <div>
               <h3 className={styles.welcome}>Welcome Back</h3>
-              {displayName ? <h3>{displayName.toUpperCase()}</h3> : null}
+              <h3>{displayName}</h3>
             </div>
 
             <div className={styles["nav-icons"]}>

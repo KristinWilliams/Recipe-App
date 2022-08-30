@@ -11,16 +11,24 @@ const SignIn = () => {
   const passRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { loginUser } = UseUserContext();
-  const { currUser } = UseUserContext();
-  const { setCurrUser } = UseUserContext();
+  const { displayName } = UseUserContext();
+  const { setDisplayName } = UseUserContext();
   const signInOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
     if (emailRef.current && passRef.current) {
       const email = emailRef.current.value;
       const pass = passRef.current.value;
       try {
-        await loginUser(email, pass);
-        navigate("/dashboard");
+        await loginUser(email, pass)
+          .then((u) => {
+            if (setDisplayName) {
+              const username = u.user.displayName;
+              setDisplayName(username);
+            }
+          })
+          .then((u) => {
+            navigate("/dashboard");
+          });
       } catch (error) {
         if (error instanceof Error) {
           alert("invalid Email or Password");

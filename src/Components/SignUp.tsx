@@ -14,7 +14,8 @@ const SignUp = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { createUser } = UseUserContext();
-  const { currUser } = UseUserContext();
+  const { displayName } = UseUserContext();
+  const { setDisplayName } = UseUserContext();
 
   const signUpOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
@@ -35,9 +36,7 @@ const SignUp = () => {
             updateProfile(auth.currentUser, {
               displayName: name,
             });
-            console.log(auth.currentUser);
           }
-
           navigate("/dashboard");
         } catch (error) {
           console.log(error);
