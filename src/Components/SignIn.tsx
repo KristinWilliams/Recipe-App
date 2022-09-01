@@ -11,7 +11,6 @@ const SignIn = () => {
   const passRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { loginUser } = UseUserContext();
-  const { displayName } = UseUserContext();
   const { setDisplayName } = UseUserContext();
   const signInOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();

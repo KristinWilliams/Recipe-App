@@ -14,8 +14,6 @@ const SignUp = () => {
   const nameRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const { createUser } = UseUserContext();
-  const { displayName } = UseUserContext();
-  const { setDisplayName } = UseUserContext();
 
   const signUpOnClick = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
@@ -36,7 +34,7 @@ const SignUp = () => {
             updateProfile(auth.currentUser, {
               displayName: name,
             });
-          } //redirect to login page
+          }
           navigate("/sign-up-redirect");
         } catch (error) {
           console.log(error);

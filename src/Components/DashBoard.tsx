@@ -33,7 +33,6 @@ interface Recipe {
 const Dashboard = () => {
   const navigate = useNavigate();
   const { displayName } = UseUserContext();
-  const { setDisplayName } = UseUserContext();
   const { signOutUser } = UseUserContext();
   const signOutOnClick = () => {
     signOutUser(auth);
@@ -46,7 +45,6 @@ const Dashboard = () => {
   const [currCal, setCurrCal] = useState<number>(0);
   const [currServ, setCurrServ] = useState<number>(0);
   const [currUrl, setCurrUrl] = useState<string>("url");
-  const [activeBtn, setActiveBtn] = useState<string>("main-course");
   const [currFat, setCurrFat] = useState<number>(0);
   const [currCarbs, setCurrCarbs] = useState<number>(0);
   const [currProtein, setCurrProtein] = useState<number>(0);
@@ -110,7 +108,6 @@ const Dashboard = () => {
             </div>
 
             <div className={styles["nav-icons"]}>
-              <img src="img/bag-heart.svg" className={styles["likes-icon"]} />
               <img
                 onClick={signOutOnClick}
                 src="img/signout-icon.svg"
