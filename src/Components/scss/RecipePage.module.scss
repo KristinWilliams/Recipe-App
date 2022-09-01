@@ -4,6 +4,12 @@
 .container {
   @include flexDefault(column);
   background-color: white;
+
+  .dashboard,
+  .recipe-img-container,
+  .title-card {
+    margin-bottom: 4rem;
+  }
   .dashboard {
     @include flexDefault(row);
     width: 100%;
@@ -38,8 +44,10 @@
     background-color: $darkOrange;
     color: white;
     @include flexDefault(column);
-    padding: 2rem 3rem;
+    padding: 2rem 5rem;
     border-radius: 1rem;
+    text-align: center;
+    max-width: 80%;
     .cal-serving {
       @include flexDefault(row);
       justify-content: space-between;
@@ -90,11 +98,12 @@
 
     .nutrition-box {
       padding: 2rem;
-      overflow: scroll;
+      overflow-y: scroll;
 
       h3 {
         margin-bottom: 1rem;
         color: $darkBlue;
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
       }
 
       ul {
@@ -106,24 +115,20 @@
         li {
           background-color: $darkOrange;
           color: white;
-          border-radius: 50rem;
+          border-radius: 1rem;
           padding: 1rem;
-          width: 8rem;
+          width: 90%;
           text-align: center;
-          font-size: 1rem;
+          font-size: clamp(1rem, 2vw, 1.5rem);
           text-overflow: "-";
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
 
       .macro-list {
         margin-bottom: 3rem;
-        // ul {
-        //   @include flexDefault(row);
-        //   li {
-        //     margin-right: 1rem;
-        //     margin-left: 1rem;
-        //   }
-        // }
       }
 
       .diet-list {
@@ -132,12 +137,51 @@
           grid-template-columns: repeat(2, 1fr);
           row-gap: 2rem;
           justify-items: center;
-          // li {
-          //   margin-right: 1rem;
-          //   margin-left: 1rem;
-          // }
         }
       }
     }
+  }
+}
+
+@media (min-width: 522px) {
+  .container {
+    width: 80%;
+    margin: auto;
+    .recipe-info-box {
+      width: 70%;
+    }
+  }
+}
+
+@media (min-width: 890px) {
+  .container {
+    width: 70%;
+    .recipe-info-box {
+      width: 60%;
+    }
+  }
+}
+
+@media (min-width: 1016px) {
+  .container {
+    width: 60%;
+    .recipe-info-box {
+      width: 70%;
+    }
+  }
+}
+
+@media (min-width: 1400px) {
+  .container {
+    width: 50%;
+    .recipe-info-box {
+      width: 55%;
+    }
+  }
+}
+
+@media (min-width: 1726px) {
+  .container {
+    width: 30%;
   }
 }

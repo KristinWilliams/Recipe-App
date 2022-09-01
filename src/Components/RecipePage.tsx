@@ -14,8 +14,6 @@ interface RecipeInfo {
   dietType: Array<string>;
 }
 
-// {Math.round(calories)}
-
 const RecipePage = ({
   setStatus,
   title,

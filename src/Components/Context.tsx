@@ -58,19 +58,18 @@ export const UserAuth = ({ children }: contextProps) => {
     return signOut(auth);
   };
 
-  // useEffect(() => {
-  //   const auth = getAuth();
-  //   const unsubscribe = onAuthStateChanged(auth, (u) => {
-  //     if (u) {
-  //       console.log(u);
-  //       setCurrUser(u);
-  //     } else {
-  //       localStorage.removeItem("currUser");
-  //       setCurrUser(null);
-  //     }
-  //   });
-  //   return unsubscribe();
-  // }, []);
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (u) => {
+      if (u) {
+        const username = u.displayName;
+        setDisplayName(username);
+      } else {
+        setDisplayName("loading");
+      }
+    });
+    return unsubscribe();
+  }, []);
 
   return (
     <UserContext.Provider

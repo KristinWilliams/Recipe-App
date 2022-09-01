@@ -84,7 +84,7 @@ const Filters = ({
       <nav>
         <img src="img/back-arrow.svg" onClick={() => setStatus("home")} />
         <h1>Filters</h1>
-        <h5>Reset</h5>
+        <div></div>
       </nav>
       <div className={styles["filter-list"]}>
         {/* <div className={styles.cuisine}>

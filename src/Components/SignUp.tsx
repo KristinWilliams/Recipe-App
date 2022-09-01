@@ -36,7 +36,7 @@ const SignUp = () => {
             updateProfile(auth.currentUser, {
               displayName: name,
             });
-          }
+          } //redirect to login page
           navigate("/dashboard");
         } catch (error) {
           console.log(error);

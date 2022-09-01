@@ -67,7 +67,7 @@ const Dashboard = () => {
       if (!checkbox.length) {
         try {
           await fetch(
-            `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09`
+            `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=${process.env.REACT_APP_EDAMAM_APP_ID}&app_key=${process.env.REACT_APP_EDAMAM_API_KEY}`
           )
             .then((res) => res.json())
             .then((data) => setRecipes(data.hits));
@@ -77,9 +77,11 @@ const Dashboard = () => {
       } else if (checkbox.length > 0) {
         try {
           await fetch(
-            `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=0c93d6d2&app_key=%200ac3ff0f7a4f6eaa21563ac7613fc71d%09&health=${checkbox.join(
-              "&health="
-            )}`
+            `https://api.edamam.com/api/recipes/v2?type=public&q=${inputValue}&app_id=${
+              process.env.REACT_APP_EDAMAM_APP_ID
+            }&app_key=${
+              process.env.REACT_APP_EDAMAM_API_KEY
+            }&health=${checkbox.join("&health=")}`
           )
             .then((res) => res.json())
             .then((data) => setRecipes(data.hits));
@@ -103,7 +105,11 @@ const Dashboard = () => {
           <nav>
             <div>
               <h3 className={styles.welcome}>Welcome Back</h3>
-              <h3>{displayName}</h3>
+              <h3>
+                {typeof displayName === "string"
+                  ? displayName.toUpperCase()
+                  : null}
+              </h3>
             </div>
 
             <div className={styles["nav-icons"]}>
@@ -155,8 +161,11 @@ const Dashboard = () => {
               >
                 <div className={styles["img-container"]}>
                   <img src={recipe.recipe.image} />
+
+                  <h4 className={styles["recipe-header"]}>
+                    {recipe.recipe.label}
+                  </h4>
                 </div>
-                <h4>{recipe.recipe.label}</h4>
               </div>
             ))}
           </div>

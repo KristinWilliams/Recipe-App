@@ -8,6 +8,7 @@ const ScrollBar = ({
   setActiveBtn: React.Dispatch<React.SetStateAction<string>>;
   activeBtn: string;
 }) => {
+ 
   const onCategoryClick = (e: React.MouseEvent<EventTarget>) => {
     switch ((e.target as Element).id) {
       case "main-course":
