@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import styles from "./scss/Dashboard.module.scss";
-import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { UseUserContext } from "./Context";
 import { auth } from "../firebase";
 import { UserAuth } from "./Context";
-import ScrollBar from "./ScrollBar";
 import Filters from "./Filters";
 import RecipePage from "./RecipePage";
-import { ObjectEncodingOptions } from "fs";
 
 interface Recipe {
   recipe: {

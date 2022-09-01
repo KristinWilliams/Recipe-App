@@ -43,7 +43,6 @@ body {
         margin-bottom: 2rem;
         &::placeholder {
           color: hsla(246, 46%, 37%, 0.5);
-          // font-size: clamp(1.5rem, 2vw, 2rem);
           font-size: 1.5rem;
         }
       }
@@ -53,7 +52,6 @@ body {
         background-color: $darkOrange;
         color: white;
         padding: 1.5rem;
-        //   font-size: clamp(1.5rem, 2vw, 2rem);
         font-size: 1.5rem;
         font-weight: bold;
         text-transform: uppercase;
@@ -66,6 +64,21 @@ body {
         }
       }
     }
+  }
+}
+
+.redirect {
+  height: 100vh;
+  @include flexDefault(column);
+  justify-content: center;
+
+  .redirect-header {
+    color: $darkOrange;
+    font-size: clamp(2rem, 2vw, 3rem);
+  }
+  .redirect-link {
+    color: $darkBlue;
+    font-size: clamp(1.8rem, 2vw, 2rem);
   }
 }
 

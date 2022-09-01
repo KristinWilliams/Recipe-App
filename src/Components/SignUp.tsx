@@ -37,7 +37,7 @@ const SignUp = () => {
               displayName: name,
             });
           } //redirect to login page
-          navigate("/dashboard");
+          navigate("/sign-up-redirect");
         } catch (error) {
           console.log(error);
         }

@@ -3,7 +3,6 @@ import styles from "./scss/HomeScreen.module.scss";
 import { NavLink } from "react-router-dom";
 
 const HomeScreen: React.FC = () => {
-  console.log(process.env.REACT_APP_EDAMAM_API_KEY);
   return (
     <div className={styles.container}>
       <div className={styles["bg-circle"]}>
